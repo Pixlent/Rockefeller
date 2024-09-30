@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcu68011n2qmk"]
+[gd_scene load_steps=4 format=3 uid="uid://bcu68011n2qmk"]
 
 [ext_resource type="Texture2D" uid="uid://dkn15lqsktfo3" path="res://assets/maps/map.jpg" id="1_ehky4"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_ii8xy"]
+[ext_resource type="PackedScene" uid="uid://dd4abrd56qwi7" path="res://scenes/interface.tscn" id="3_2ufxh"]
 
 [node name="Root" type="Node2D"]
 
@@ -16,5 +17,7 @@ region_rect = Rect2(100, 100, 100, 100)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("2_ii8xy")
+
+[node name="Interface" parent="Player/Camera" instance=ExtResource("3_2ufxh")]
 
 [connection signal="hidden" from="Map" to="Player/Camera" method="_on_map_hidden"]
