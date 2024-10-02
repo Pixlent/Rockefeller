@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcu68011n2qmk"]
+
+[ext_resource type="Texture2D" uid="uid://dkn15lqsktfo3" path="res://assets/maps/map.jpg" id="1_iqa7y"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="2_i5xpb"]
+[ext_resource type="PackedScene" uid="uid://dd4abrd56qwi7" path="res://scenes/interface.tscn" id="3_kihll"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Map" type="Sprite2D" parent="."]
+scale = Vector2(0.46, 0.46)
+texture = ExtResource("1_iqa7y")
+region_rect = Rect2(100, 100, 100, 100)
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Camera" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("2_i5xpb")
+
+[node name="Interface" parent="Player/Camera" instance=ExtResource("3_kihll")]
+
+[connection signal="hidden" from="Map" to="Player/Camera" method="_on_map_hidden"]

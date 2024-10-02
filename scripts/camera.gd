@@ -17,6 +17,12 @@ func _on_scroll_container_mouse_exited():
 	hovering_ui = false
 
 func _input(event: InputEvent):
+	var hovered_control = get_viewport().gui_get_hovered_control()
+	
+	if hovered_control:
+		if hovered_control.is_in_group("interactive_ui"):
+			return
+	
 	_handle_focus(event)
 	_handle_zoom(event)
 	_handle_movement(event)
