@@ -8,13 +8,6 @@ const ZOOM_IN_SPEED := 5
 
 var new_zoom := zoom.x
 var new_position := position
-var hovering_ui: bool
-
-func _on_scroll_container_mouse_entered():
-	hovering_ui = true
-
-func _on_scroll_container_mouse_exited():
-	hovering_ui = false
 
 func _input(event: InputEvent):
 	var hovered_control = get_viewport().gui_get_hovered_control()
