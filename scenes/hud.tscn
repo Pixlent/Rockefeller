@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://baqi1qvvjqray"]
+
+[sub_resource type="GDScript" id="GDScript_5708e"]
+script/source = "extends CanvasLayer
+
+@onready var timer = $Timer
+
+var card: Node
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="HUD" type="CanvasLayer"]
+script = SubResource("GDScript_5708e")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 112.0
+grow_vertical = 0
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" groups=["interactive_ui"]]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer" groups=["interactive_ui"]]
+layout_mode = 2
+text = "Draw card"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="mouse_entered" from="VBoxContainer" to="VBoxContainer" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer" to="VBoxContainer" method="_on_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

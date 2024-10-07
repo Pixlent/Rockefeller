@@ -1,4 +1,6 @@
-extends Control
+extends Node
+
+@onready var main: Control = $".."
 
 @export var address: String = "127.0.0.1"
 @export var port: int = 8910
@@ -27,17 +29,17 @@ func peer_disconnected(id):
 # Gets called on the client
 func connected_to_server():
 	print("Connected to server!")
-	send_player_information.rpc_id(1, $VBoxContainer2/NameEdit.text, multiplayer.get_unique_id())
+	send_player_information.rpc_id(1, $"../VBoxContainer/NameEdit.text", multiplayer.get_unique_id())
 
 # Gets called on the client
 func connection_failed():
 	print("Failed to connect to server...")
 
 @rpc("any_peer")
-func send_player_information(name, id):
+func send_player_information(username, id):
 	if !GameManager.players.has(id):
 		GameManager.players[id] = {
-			"name": name,
+			"name": username,
 			"id": id
 		}
 	
@@ -47,52 +49,31 @@ func send_player_information(name, id):
 
 @rpc("any_peer", "call_local")
 func start_game():
-	var game = load("res://scenes/game.tscn").instantiate()
-	get_tree().root.add_child(game)
-	self.hide()
-
-func get_local_ip() -> String:
-	var ip_adress :String
-
-	if OS.has_feature("windows"):
-		if OS.has_environment("COMPUTERNAME"):
-			ip_adress =  IP.resolve_hostname(str(OS.get_environment("COMPUTERNAME")),1)
-	elif OS.has_feature("x11"):
-		if OS.has_environment("HOSTNAME"):
-			ip_adress =  IP.resolve_hostname(str(OS.get_environment("HOSTNAME")),1)
-	elif OS.has_feature("OSX"):
-		if OS.has_environment("HOSTNAME"):
-			ip_adress =  IP.resolve_hostname(str(OS.get_environment("HOSTNAME")),1)
-	
-	return ip_adress
+	SceneManager.load_game("res://scenes/game.tscn")
 
 func _on_host_button_pressed():
 	print("Hosting server...")
 	
 	peer = ENetMultiplayerPeer.new()
-	port = int($VBoxContainer2/BoxContainer/PortEdit.text)
+	port = int($"../VBoxContainer/BoxContainer/PortEdit".text)
 	
 	var error = peer.create_server(port, 10)
 	
-	print(get_local_ip())
 	print("Server created on: " + str(port))
 	
 	if error != OK:
 		print("Cannot host: ", error)
 		return
 	
-	# peer.host.compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.multiplayer_peer = peer
 	
-	send_player_information($VBoxContainer2/NameEdit.text, multiplayer.get_unique_id())
+	send_player_information($"../VBoxContainer/NameEdit".text, multiplayer.get_unique_id())
 	
 	print("Waiting for players...")
 
 func _on_join_button_pressed():
-	print("Joining server...")
-	
-	address = $VBoxContainer2/BoxContainer/AddressEdit.text
-	port = int($VBoxContainer2/BoxContainer/PortEdit.text)
+	address = $"../VBoxContainer/BoxContainer/AddressEdit".text
+	port = int($"../VBoxContainer/BoxContainer/PortEdit".text)
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(address, port)
 	print("Attempting to connect to server on: " + address + ":" + str(port))

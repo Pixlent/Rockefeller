@@ -1,0 +1,14 @@
+[
+  {
+    "name": "crypto",
+    "weight": 10
+  },
+  {
+    "name": "console",
+    "weight": 1
+  },
+  {
+    "name": "charity",
+    "weight": 1
+  }
+]

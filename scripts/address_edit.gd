@@ -6,11 +6,11 @@ func _ready():
 	text = get_local_ip()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func get_local_ip() -> String:
-	var ip_adress :String
+	var ip_adress: String
 
 	if OS.has_feature("windows"):
 		if OS.has_environment("COMPUTERNAME"):

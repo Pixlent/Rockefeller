@@ -1,0 +1,34 @@
+[
+  {
+    "name": "bold_rock_avenue",
+    "weight": 1
+  },
+  {
+    "name": "the_long_dark",
+    "weight": 1
+  },
+  {
+    "name": "new_york_avenue",
+    "weight": 10
+  },
+  {
+    "name": "quick_avenue",
+    "weight": 1
+  },
+  {
+    "name": "washington_avenue",
+    "weight": 1
+  },
+  {
+    "name": "hotel_lounge",
+    "weight": 1
+  },
+  {
+    "name": "coal_mine",
+    "weight": 1
+  },
+  {
+    "name": "mystery_lake",
+    "weight": 1
+  }
+]
