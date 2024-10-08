@@ -1,12 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcu68011n2qmk"]
+[gd_scene load_steps=8 format=3 uid="uid://bcu68011n2qmk"]
 
+[ext_resource type="Script" path="res://scripts/turn_machine.gd" id="1_ncvu7"]
 [ext_resource type="Texture2D" uid="uid://u1cl8o4cmw18" path="res://assets/maps/meliina_map.jpg" id="1_qd0wi"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_vdn25"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_i5xpb"]
 [ext_resource type="Script" path="res://scripts/card.gd" id="3_8syti"]
 [ext_resource type="Script" path="res://scripts/restart_game.gd" id="3_hgyqj"]
 [ext_resource type="Script" path="res://scripts/deck.gd" id="4_rbrxn"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_vdn25")
+
+[node name="TurnMachine" type="Node" parent="."]
+script = ExtResource("1_ncvu7")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

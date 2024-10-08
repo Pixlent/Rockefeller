@@ -13,7 +13,18 @@ var investment_opportunities = DataLoader.load_json("res://data/cards/investment
 func _ready():
 	pass
 
-func draw_card():
+@rpc("any_peer", "call_local")
+func draw_card(card_info: Dictionary):
+	
+	
+	print(card_info)
+	
+	card.set_card_name("Card: " + card_info["name"])
+	card.show()
+	timer.stop()
+	timer.start(3)
+
+func roll_card():
 	var weighted_sum = 0
 	var cards = real_estate + events + investment_opportunities
 	
@@ -28,14 +39,7 @@ func draw_card():
 		card -= n["weight"]
 
 func _on_button_pressed():
-	var card_info = draw_card()
-	
-	print(card_info)
-	
-	card.set_card_name("Card: " + card_info["name"])
-	card.show()
-	timer.stop()
-	timer.start(3)
+	draw_card.rpc(roll_card())
 
 func _on_timer_timeout():
 	card.hide()
