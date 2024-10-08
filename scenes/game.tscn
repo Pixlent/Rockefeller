@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://bcu68011n2qmk"]
 
 [ext_resource type="Script" path="res://scripts/turn_machine.gd" id="1_ncvu7"]
-[ext_resource type="Texture2D" uid="uid://u1cl8o4cmw18" path="res://assets/maps/meliina_map.jpg" id="1_qd0wi"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_vdn25"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_i5xpb"]
 [ext_resource type="Script" path="res://scripts/card.gd" id="3_8syti"]
 [ext_resource type="Script" path="res://scripts/restart_game.gd" id="3_hgyqj"]
 [ext_resource type="Script" path="res://scripts/deck.gd" id="4_rbrxn"]
+[ext_resource type="Texture2D" uid="uid://br14r07fqvdjf" path="res://assets/maps/map-v1.0.svg" id="6_ou2e6"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_vdn25")
@@ -73,9 +73,8 @@ layout_mode = 2
 text = "Draw card"
 
 [node name="Map" type="Sprite2D" parent="."]
-position = Vector2(-0.618963, 3.26258)
-scale = Vector2(1.14597, 1.14597)
-texture = ExtResource("1_qd0wi")
+scale = Vector2(0.262037, 0.262037)
+texture = ExtResource("6_ou2e6")
 region_rect = Rect2(100, 100, 100, 100)
 
 [node name="Camera" type="Camera2D" parent="."]
